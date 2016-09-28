@@ -10,11 +10,11 @@ void audio() {
   popMatrix();
   if ( recorder.isRecording() )
   {
-    text("Currently recording...", 5, 15);
+    text("Currently recording audio.", 5, 15);
   }
   else
   {
-    text("Not recording.", 5, 15);
+    text("Not recording audio.", 5, 15);
   }
 
 }

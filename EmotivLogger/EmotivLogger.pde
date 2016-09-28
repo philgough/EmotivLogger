@@ -10,7 +10,6 @@
  */
 
 // Text parser
-import oscP5.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,8 +18,8 @@ import ddf.minim.*;
 
 // declare objects
 // Text parser
-OscP5 oscP5;
-PrintWriter eegOutput;
+//OscP5 oscP5;
+//PrintWriter eegOutput;
 PrintWriter researchNotes;
 SimpleDateFormat dateForm;
 SimpleDateFormat timeForm;
@@ -45,11 +44,9 @@ AudioRecorder recorder;
 
 void setup() {
 
-  size(displayWidth, displayHeight);
+  // reduce size so it plays nice with ubuntu
+  size(1280, 1024 );
 
-
-  // listen for OSC messages on port 7400
-  oscP5 = new OscP5(this, 7400);
   
   // format datestamp for the file name
   dateForm = new SimpleDateFormat("yyyy_MM_dd");
@@ -62,7 +59,6 @@ void setup() {
   String dateS = dateForm.format(date); // format the date
   String timeS = hour() + "_" + minute();
 
-  eegOutput = createWriter("dataRecording/" + dateS + "/epoc_log_"+timeS+".txt"); // include the date in the file name
 
   researchNotes = createWriter("dataRecording/" + dateS + "/notes_log_" + timeS + ".txt");
   singleNote = "";
@@ -85,5 +81,3 @@ void draw() {
   audio();
   recordResearchNotes();
 }
-
-

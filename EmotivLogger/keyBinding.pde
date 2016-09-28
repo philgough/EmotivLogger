@@ -32,8 +32,14 @@ void keyPressed() {
 				}
 				else {
 					if (key == ENTER) {
-						Date time = new Date();
-						String timeS = timeForm.format(time);
+						//Date time = new Date();
+						//String timeS = timeForm.format(time);
+            // save time as time after recording started instead of timestamp.
+            int m = millis();
+            int h = m/3600000;
+            int M = m/60000;
+            int s = m/1000;
+            String timeS = h+":"+M+":"+s;
 						println("saved note");
 						researchNotes.println(timeS+ "\t" +singleNote);
 						previousNote = singleNote;
@@ -55,9 +61,7 @@ void keyPressed() {
 
 void safeExit() {
 	// write remaning data
-	eegOutput.flush();
-	// close file
-	eegOutput.close();
+
 	researchNotes.flush();
 	researchNotes.close();
 	recorder.endRecord();
